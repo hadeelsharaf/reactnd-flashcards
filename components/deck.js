@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
@@ -10,6 +10,13 @@ const styles = StyleSheet.create({
     borderColor: '#d6d7da',
     alignItems: 'center',
     },
+  androidBtn: {
+      margin: 5,
+      backgroundColor: "#1A237E",
+      color:"white",
+      padding: 10,
+      borderRadius: 2,
+  },
   title: {
     fontSize: 19,
     fontWeight: 'bold',
@@ -18,12 +25,23 @@ const styles = StyleSheet.create({
 
 
 export default class DeckCard extends React.Component {
+  
+  press = () => {
+    console.log("pressed")
+    /*this.props.navigation.navigate(
+              'EntryDetail',
+              { entryId: key }
+            )*/
+  }
+
   render() {
     return (
         <View style={styles.container}>
           <Text style={styles.title}> title </Text>
           <Text > count </Text>
-          <Text > tttt </Text>
+          <TouchableOpacity onPress = {this.press}>
+          <Text style={styles.androidBtn}> View details </Text>
+          </TouchableOpacity>
         </View>
     )
   }
