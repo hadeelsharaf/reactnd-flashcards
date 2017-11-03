@@ -1,24 +1,51 @@
 import React from 'react'
-import { FlatList, Text, StyleSheet } from 'react-native'
-import { connect } from 'react-redux'
+import { FlatList, 
+  View, 
+  TouchableOpacity, 
+  Text } from 'react-native'
 import DeckCard from './deck'
 import { fetchDecks } from '../utils/storage'
+import { styles }  from "./styles"
 
 
 
 class DeckList extends React.Component {
 
+    state = {
+      decks : []
+    }
+
+    press = () => {
+        console.log("pressed")
+        /*this.props.navigation.navigate(
+                  'EntryDetail',
+                  { entryId: key }
+                )*/
+      }
+
     componentDidMount() {
-        const { dispatch } = this.props;
-        fetchDecks().then((data)=> console.log(data))
+        fetchDecks().then((data)=> this.setState({
+          decks: data
+        }))
     }
 
     render() {
-        return (
-            <FlatList 
-             data={[{key: 'a'}, {key: 'b'}]} 
-             renderItem={({item}) => <DeckCard/>}/>
-        )
+        let render_dom = this.state.decks?
+            (<FlatList 
+             data={this.state.decks} 
+             renderItem={({item}) => <DeckCard/>}/>): 
+             (
+              <View style={styles.container}>
+                <Text> Nothing here yet </Text>
+                <TouchableOpacity onPress = {this.press}>
+                  <Text style={styles.androidBtn}> Start Adding </Text>
+                </TouchableOpacity>
+              </View>
+            )
+
+
+
+        return  render_dom 
     }
 }
 
@@ -28,4 +55,4 @@ function mapStateToProps (decks) {
   }
 }
 
-export default connect(mapStateToProps)(DeckList)
+export default DeckList
