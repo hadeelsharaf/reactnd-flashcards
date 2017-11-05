@@ -18,10 +18,9 @@ export default class DeckCard extends React.Component {
   render() {
     return (
         <View style={styles.container}>
+          <TouchableOpacity style={styles.container} onPress = {this.press}>
           <Text style={styles.title}> title </Text>
           <Text > count </Text>
-          <TouchableOpacity onPress = {this.press}>
-          <Text style={styles.androidBtn}> View details </Text>
           </TouchableOpacity>
         </View>
     )

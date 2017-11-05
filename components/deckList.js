@@ -15,13 +15,8 @@ class DeckList extends React.Component {
       decks : []
     }
 
-    press = () => {
-        console.log("pressed")
-        /*this.props.navigation.navigate(
-                  'EntryDetail',
-                  { entryId: key }
-                )*/
-      }
+    static navigationOptions = { title: 'All', };
+
 
     componentDidMount() {
         fetchDecks().then((data)=> this.setState({
@@ -30,14 +25,16 @@ class DeckList extends React.Component {
     }
 
     render() {
-        let render_dom = this.state.decks?
+        let dummyData=[{key:'a'}, {key:'b'}]
+        const {navigate} = this.props.navigation;
+        let render_dom = dummyData?
             (<FlatList 
-             data={this.state.decks} 
+             data={dummyData} 
              renderItem={({item}) => <DeckCard/>}/>): 
              (
               <View style={styles.container}>
                 <Text> Nothing here yet </Text>
-                <TouchableOpacity onPress = {this.press}>
+                <TouchableOpacity onPress = {() => navigate('AddDeck')}>
                   <Text style={styles.androidBtn}> Start Adding </Text>
                 </TouchableOpacity>
               </View>
