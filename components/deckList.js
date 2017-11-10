@@ -4,33 +4,47 @@ import { FlatList,
   TouchableOpacity, 
   Text } from 'react-native'
 import DeckCard from './deck'
-import { fetchDecks } from '../utils/storage'
+import { fetchDecks,clear } from '../utils/storage'
 import { styles }  from "./styles"
+import { connect } from "react-redux"
+import { getDecks } from "../actions/index"
+import { decksToArray } from "../utils/helper";
 
 
 
 class DeckList extends React.Component {
 
     state = {
-      decks : []
+      ready:null
     }
 
-    static navigationOptions = { title: 'All', };
-
+    fetchAll = () => {
+      fetchDecks().then((data)=> {
+          if(data){
+            let decks = decksToArray(data)
+            this.props.dispatch(getDecks(decks))
+            
+          }
+        }
+      ).then(()=> this.setState({ready:true}))
+    }
 
     componentDidMount() {
-        fetchDecks().then((data)=> this.setState({
-          decks: data
-        }))
+        this.fetchAll()
     }
 
     render() {
-        let dummyData=[{key:'a'}, {key:'b'}]
-        const {navigate} = this.props.navigation;
-        let render_dom = dummyData?
-            (<FlatList 
-             data={dummyData} 
-             renderItem={({item}) => <DeckCard/>}/>): 
+        let {navigate}=this.props.navigation
+        let ready = this.state.ready
+        let decks = ready?this.props.decks.decks:[] ;
+        let render_dom = decks.length > 0 ?
+            (
+              <View style={styles.container}>
+              <FlatList 
+               data={decks} 
+               renderItem={({item}) => <DeckCard deck={item} navigation={this.props.navigation} />}/>
+             </View>
+             ): 
              (
               <View style={styles.container}>
                 <Text> Nothing here yet </Text>
@@ -52,4 +66,4 @@ function mapStateToProps (decks) {
   }
 }
 
-export default DeckList
+export default connect(mapStateToProps)(DeckList)

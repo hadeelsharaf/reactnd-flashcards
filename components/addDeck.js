@@ -1,11 +1,19 @@
 import React from 'react'
-import { KeyboardAvoidingView, Text, TextInput, TouchableOpacity } from 'react-native'
+import { KeyboardAvoidingView, 
+	Text,
+	TextInput, 
+	TouchableOpacity,
+	View
+	 } from 'react-native'
 import { styles }  from "./styles";
+import { addDeck, fetchDecks } from "../utils/storage";
+import { decksToArray } from "../utils/helper";
+import { connect } from "react-redux"
+import { addNewDeck, getDecks } from "../actions/index"
 
 
 
-
-export default class AddDeck extends React.Component {
+class AddDeck extends React.Component {
   
 	state = {
 		title: ""
@@ -14,22 +22,29 @@ export default class AddDeck extends React.Component {
 	static navigationOptions = { title: 'New Deck', };
 
 	press = () => {
-		console.log("pressed")
-		console.log(this.state.title)
-		/*this.props.navigation.navigate(
-		          'EntryDetail',
-		          { entryId: key }
-		        )*/
+		let deck = {
+			[this.state.title]:
+			{
+				title:this.state.title,
+				key:this.state.title,
+				questions:[]
+			}
+		}
+		addDeck(deck).then(() => {
+			this.props.dispatch(addNewDeck(deck[this.state.title]))
+		}
+		).then(()=> this.props.navigation.navigate(
+		          'Details',{key:this.state.title}
+		        ))
+		
 	}
 
 	render() {
 		return (
-		    <KeyboardAvoidingView 
+		    <KeyboardAvoidingView style={[styles.addViewContainer]}
 		    behavior='padding'>
-		      <Text > Add Title </Text>
 		       <TextInput
 		          placeholder="Type the name"
-		          style = {{ padding:5}}
 		          onChangeText={(title) => this.setState({title})}
 		        />
 		      <TouchableOpacity onPress = {this.press}>
@@ -40,4 +55,10 @@ export default class AddDeck extends React.Component {
 	}
 }
 
+function mapStateToProps (decks) {
+  return {
+    decks
+  }
+}
 
+export default connect(mapStateToProps)(AddDeck)

@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     borderRadius: 4,
     borderWidth: 0.5,
     borderColor: '#d6d7da',
@@ -15,9 +15,17 @@ export const styles = StyleSheet.create({
       color:"white",
       padding: 10,
       borderRadius: 2,
+      textAlign:'center'
   },
   title: {
-    fontSize: 19,
+    fontSize: 22,
     fontWeight: 'bold',
   },
+  addViewContainer:{
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'stretch',
+    }
+
 })
+
