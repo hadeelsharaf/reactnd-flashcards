@@ -15,17 +15,23 @@ export const styles = StyleSheet.create({
       color:"white",
       padding: 10,
       borderRadius: 2,
-      textAlign:'center'
+      textAlign:'center',
+      fontSize: 20,
+  },
+  btnContainer:{
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'stretch',
   },
   title: {
-    fontSize: 22,
+    fontSize: 30,
     fontWeight: 'bold',
   },
   addViewContainer:{
     flex: 1,
     justifyContent: 'space-around',
     alignItems: 'stretch',
-    }
+  }
 
 })
 

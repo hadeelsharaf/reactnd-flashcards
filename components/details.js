@@ -14,8 +14,7 @@ class DeckDetail extends React.Component {
   static navigationOptions = { title: 'Deck Details', };
   
   start = (key) => {
-    console.log("here")
-    console.log(key)
+    this.props.navigation.navigate("Quiz", {key})
   }
 
   add = (key) => {
@@ -32,20 +31,23 @@ class DeckDetail extends React.Component {
   render() {
     let {deck} = this.state
     return (
-      <View>
-            <Text
-             style={[styles.title, 
-              {textAlign:"center"}]}> {deck && deck.title } 
-             </Text>
-            <Text style={{ textAlign:"center"}}> Questions : {deck && deck.questions.length} </Text>
-          <TouchableOpacity 
-          onPress={()=> this.start(deck.key)} >
-          <Text style={[styles.androidBtn]}> Start a Quiz </Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-          onPress={()=> this.add(deck.key)} >
-          <Text style={[styles.androidBtn]}> Create New Question </Text>
-          </TouchableOpacity>
+      <View style={styles.addViewContainer}>
+          <Text
+           style={[styles.title, 
+            {textAlign:"center"}]}> {deck && deck.title } 
+           </Text>
+          <Text style={{ textAlign:"center"}}> Questions : {deck && deck.questions.length} </Text>
+          <View style={styles.btnContainer}> 
+            {deck && deck.questions.length >0 && <TouchableOpacity 
+            onPress={()=> this.start(deck.key)} >
+            <Text style={[styles.androidBtn]}> Start a Quiz </Text>
+            </TouchableOpacity>
+            }
+            <TouchableOpacity 
+            onPress={()=> this.add(deck.key)} >
+            <Text style={[styles.androidBtn]}> Create New Question </Text>
+            </TouchableOpacity>
+          </View>
       </View>
     )
   }

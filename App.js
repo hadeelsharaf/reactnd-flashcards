@@ -7,11 +7,14 @@ import DeckDetail from './components/details';
 import Decklist from './components/deckList';
 import AddDeck from './components/addDeck';
 import AddCard from './components/addCard';
+import Quiz from './components/quiz';
+import LastScore from "./components/scoreView";
 import { Constants } from 'expo';
 import {
   TabNavigator,
   StackNavigator
 } from 'react-navigation';
+import { setLocalNotification } from './utils/helper'
 
 const Tabs = TabNavigator({
   Home: { screen: Decklist },
@@ -25,11 +28,16 @@ const MainNav = StackNavigator({
   Tabs:  {screen: Tabs },
   Details : {screen: DeckDetail },
   AddCard : {screen: AddCard },
+  Quiz: {screen: Quiz},
+  Score: {screen:LastScore}
 });
 
 
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
     return (
       <Provider store={createStore(reducer)}>

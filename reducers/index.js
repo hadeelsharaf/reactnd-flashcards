@@ -1,27 +1,33 @@
-import { GET_DECKS, GET_DECK, ADD_DECK, ADD_CARD } from '../actions'
+import { GET_DECKS, GET_DECK, ADD_DECK, ADD_CARD, SET_SCORE } from '../actions'
 
 
 let initialState = {
-  decks:[]
+  decks:[],
+  score:0
 }
 
 function decks (state=initialState , action) {
   console.log(action.type)
+
   switch (action.type) {
+    case SET_SCORE:
+     return{
+      ...state,
+      score:action.score
+     }
     case GET_DECKS :
       let st =  {
         ...state,
         decks:action.decks,
       }
-      console.log(st)
       return st
     case ADD_DECK :
       return {
         ...state,
         decks:state.decks.concat([action.deck])
       }
+
     case ADD_CARD :
-      // use map
       return {
         ...state,
         decks:state.decks.map((item)=>{
@@ -31,6 +37,7 @@ function decks (state=initialState , action) {
           return item
         })
       }
+
     default :
       return state
   }
