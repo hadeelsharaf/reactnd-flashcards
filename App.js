@@ -4,11 +4,11 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import DeckDetail from './components/details';
-import Decklist from './components/deckList';
-import AddDeck from './components/addDeck';
-import AddCard from './components/addCard';
+import Decklist from './components/DeckList';
+import AddDeck from './components/AddDeck';
+import AddCard from './components/AddCard';
 import Quiz from './components/quiz';
-import LastScore from "./components/scoreView";
+import LastScore from "./components/ScoreView";
 import { Constants } from 'expo';
 import {
   TabNavigator,

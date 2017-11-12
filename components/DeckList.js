@@ -3,7 +3,7 @@ import { FlatList,
   View, 
   TouchableOpacity, 
   Text } from 'react-native'
-import DeckCard from './deck'
+import DeckCard from './Deck'
 import { fetchDecks,clear } from '../utils/storage'
 import { styles }  from "./styles"
 import { connect } from "react-redux"
