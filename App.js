@@ -3,11 +3,11 @@ import { View,Text,StatusBar } from 'react-native';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
-import DeckDetail from './components/details';
+import DeckDetail from './components/Details';
 import Decklist from './components/DeckList';
 import AddDeck from './components/AddDeck';
 import AddCard from './components/AddCard';
-import Quiz from './components/quiz';
+import Quiz from './components/Quiz';
 import LastScore from "./components/ScoreView";
 import { Constants } from 'expo';
 import {
