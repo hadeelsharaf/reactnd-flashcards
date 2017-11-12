@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Button } from 'react-native'
 import { connect } from "react-redux"
 import { setLocalNotification, clearLocalNotification } from '../utils/helper'
 
@@ -36,20 +36,32 @@ const styles = StyleSheet.create({
       padding: 10,
       borderRadius: 2,
       textAlign:'center',
-      fontSize:20
-
+      fontSize:20,
+      backgroundColor: "#1A237E"
   },
   btnContainer:{
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'stretch',
+  },
+  homeBtn: {
+      color:"white",
+      textAlign:'center',
+      margin: 5,
+      padding: 5,
+      fontSize:18,
+      backgroundColor: "#1A237E"
   }
 })
 
 class LastScore extends React.Component {
+  // TODO fix home style
 
-
-  static navigationOptions = { title: 'Score', };
+  static navigationOptions = ({navigation}) => ({ title: "Score", 
+    headerLeft: <Text style={styles.homeBtn} 
+                    onPress={()=> navigation.navigate("Home")}> Home</Text>
+    }
+    )
 
   back= () => {
     let key = this.props.navigation.state.params.key
