@@ -2,6 +2,12 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 
 This project is tested using `android` device.
 
+Packages Documentaion Links :
+* [react-navigation](https://reactnavigation.org/docs/intro/) .
+* [react-native-deck-swiper](https://github.com/alexbrillant/react-native-deck-swiper) .
+
+
+
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
 
 ## Table of Contents
