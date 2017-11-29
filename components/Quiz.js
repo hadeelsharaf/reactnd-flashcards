@@ -7,10 +7,6 @@ import { setLastScore } from "../utils/storage";
 import { setScore } from "../actions/index"
 
 
-
-// SEND NOTIFICATION
-
-
 class Quiz extends Component {
   state = {
       cards: null,
