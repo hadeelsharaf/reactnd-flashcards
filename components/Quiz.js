@@ -116,10 +116,8 @@ class Quiz extends Component {
 
   render () {
     let {cards, swipedAllCards,ready} = this.state
-
-    return (
-       <View style={styles.container}>
-        {cards && ready && <Swiper
+    let {navigation} = this.props
+    let swiper_dom = (<Swiper
           ref={swiper => {
             this.swiper = swiper
           }}
@@ -136,7 +134,20 @@ class Quiz extends Component {
           animateCardOpacity
         >
           <Text > Question : {this.state.cardIndex+1} / {this.state.cards.length}</Text>
-        </Swiper>}
+        </Swiper>)
+
+    let note_dom = (
+      <View>
+      <Text> all cards are viewed please choose another quiz</Text>
+      <Text style={styles.androidBtn} 
+                    onPress={()=> navigation.navigate("Home")}> Here</Text>
+      </View>
+      )
+
+    return (
+       <View style={styles.container}>
+        {((cards && ready)? swiper_dom:
+        }
       </View>
     )
   }
