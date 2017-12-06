@@ -146,7 +146,7 @@ class Quiz extends Component {
 
     return (
        <View style={styles.container}>
-        {((cards && ready)? swiper_dom:
+        {((cards && ready)? swiper_dom:note_dom
         }
       </View>
     )
